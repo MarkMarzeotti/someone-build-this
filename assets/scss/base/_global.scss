@@ -1,0 +1,50 @@
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 1200px;
+
+	.container {
+		@include grid-collapse;
+	}
+}
+
+.header,
+.content,
+.footer {
+	float: left;
+	width: 100%;
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+
+	&:focus {
+		background-color: $color__white;
+		clip: auto !important;
+		clip-path: none;
+		color: $color__black;
+		display: block;
+		font-family: $font__secondary;
+		font-size: 1em;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 100000; /* Above WP toolbar. */
+	}
+}

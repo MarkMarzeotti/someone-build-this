@@ -1,0 +1,24 @@
+$neat-grid: (
+	columns: 4,
+	gutter: 20px
+);
+
+$small-screen: 375px;
+$medium-screen: 768px;
+$large-screen: 1280px;
+
+$small-screen-grid: (
+	columns: 4,
+	gutter: 20px,
+	media: $small-screen
+);
+$medium-screen-grid: (
+	columns: 12,
+	gutter: 20px,
+	media: $medium-screen
+);
+$large-screen-grid: (
+	columns: 12,
+	gutter: 20px,
+	media: $large-screen
+);

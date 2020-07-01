@@ -1,0 +1,53 @@
+.btn,
+a.btn,
+.btn:visited,
+a.btn:visited,
+input[type=button],
+.wp-block-button .wp-block-button__link {
+	appearance: none;
+	background-color: $color__black;
+	border: 0;
+	border-radius: 0;
+	box-sizing: border-box;
+	color: $color__white;
+	display: inline-block;
+	font-family: $font__secondary;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1;
+	margin-bottom: 20px;
+	margin-right: 40px;
+	opacity: 1;
+	padding: 15px 30px 13px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 300ms ease;
+
+	&:hover {
+		background-color: rgba($color__black, .7);
+	}
+
+	&.hidden {
+		opacity: 0;
+	}
+
+	span {
+		color: $color__white;
+	}
+
+	a {
+		font-weight: 500 !important;
+	}
+
+	@include grid-media($medium-screen-grid) {
+		margin-bottom: 0;
+	}
+}
+
+.btn a,
+.btn a:visited {
+	color: $color__white;
+	text-decoration: none;
+}

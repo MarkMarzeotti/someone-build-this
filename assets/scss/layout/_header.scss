@@ -1,0 +1,38 @@
+.header {
+	position: relative;
+	z-index: 100;
+
+	.container {
+		align-items: center;
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	&__logo {
+		@include grid-column(2);
+
+		@include grid-media($medium-screen-grid) {
+			@include grid-column(6);
+		}
+
+		h1 {
+			font-size: 30px;
+			line-height: 60px;
+			margin: 0;
+		}
+
+		a {
+			color: $color__mine-shaft;
+			line-height: 1;
+			text-decoration: none;
+		}
+	}
+
+	&__nav {
+		@include grid-column(2);
+
+		@include grid-media($medium-screen-grid) {
+			@include grid-column(6);
+		}
+	}
+}

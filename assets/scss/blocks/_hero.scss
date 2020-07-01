@@ -1,0 +1,23 @@
+.block {
+
+	&__hero {
+		background-color: rgba($color__mine-shaft, .1);
+		margin-bottom: 60px;
+		padding: 90px 0 60px;
+		position: relative;
+
+		&::before {
+			@include position(absolute, 0 0 0 0);
+		}
+
+		.hero {
+			@include grid-column(4);
+			text-align: center;
+
+			@include grid-media( $medium-screen-grid ) {
+				@include grid-column(6);
+				@include grid-shift(3);
+			}
+		}
+	}
+}

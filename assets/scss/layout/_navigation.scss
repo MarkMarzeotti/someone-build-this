@@ -1,0 +1,204 @@
+.nav {
+
+	&__button {
+		appearance: none;
+		background-color: transparent;
+		border: 0;
+		cursor: pointer;
+		float: right;
+		margin-right: -15px;
+		padding: 15px;
+		position: relative;
+		z-index: 60;
+
+		@include grid-media($medium-screen-grid) {
+			display: none;
+		}
+
+		&:hover {
+
+			.hamburger {
+
+				&__top,
+				&__middle,
+				&__bottom {
+					width: 34px;
+				}
+			}
+		}
+	}
+
+	&__container {
+		@include position(fixed, 0 null 0 100%);
+		background-color: $color__white;
+		overflow: scroll;
+		padding: 130px 0 40px;
+		transition: left 300ms ease;
+		width: 100vw;
+		z-index: 50;
+
+		@include grid-media($medium-screen-grid) {
+			@include position(relative, auto null auto auto);
+			background-color: transparent;
+			display: flex;
+			justify-content: flex-end;
+			overflow: visible;
+			padding: 0;
+			width: auto;
+		}
+	}
+
+	&__level {
+		width: 100%;
+
+		@include grid-media($medium-screen-grid) {
+			width: auto;
+		}
+
+		ul {
+			background-color: rgba($color__mine-shaft, .05);
+			display: none;
+
+			@include grid-media($medium-screen-grid) {
+				@include position(absolute, 100% null null 0);
+				background-color: $color__white;
+				width: 200px;
+			}
+
+			ul {
+
+				@include grid-media($medium-screen-grid) {
+					@include position(absolute, 0 null null 100%);
+				}
+			}
+		}
+	}
+
+	&__item {
+		display: block;
+		position: relative;
+		width: 100%;
+
+		@include grid-media($medium-screen-grid) {
+			display: inline-block;
+			width: auto;
+
+			&:hover {
+
+				> ul {
+					display: flex;
+					flex-direction: column;
+				}
+			}
+		}
+
+		a {
+			color: $color__mine-shaft;
+			display: block;
+			padding: 10px 20px;
+			text-decoration: none;
+			width: 100%;
+
+			@include grid-media($medium-screen-grid) {
+				padding: 16px 10px;
+			}
+		}
+
+		ul {
+
+			li {
+				width: 100%;
+
+				a {
+
+					@include grid-media($medium-screen-grid) {
+						padding: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	&.toggled {
+
+		.nav__button {
+
+			.hamburger {
+
+				&__top,
+				&__middle,
+				&__bottom {
+					width: 34px;
+				}
+
+				&__top {
+					top: 13px;
+					transform: rotate(45deg);
+				}
+
+				&__middle {
+					opacity: 0;
+				}
+
+				&__bottom {
+					top: 13px;
+					transform: rotate(-45deg);
+				}
+			}
+		}
+
+		.nav__container {
+			left: 0;
+		}
+	}
+
+	.button-menu {
+
+		a {
+			@extend .btn;
+			width: auto;
+		}
+	}
+}
+
+.hamburger {
+	display: block;
+	height: 30px;
+	position: relative;
+	width: 34px;
+
+	&__top,
+	&__middle,
+	&__bottom {
+		background-color: $color__mine-shaft;
+		border-radius: 6px;
+		box-sizing: content-box;
+		display: block;
+		height: 4px;
+		left: 0;
+		position: absolute;
+		width: 34px;
+	}
+
+	&__top {
+		top: 3px;
+		transition: left 300ms ease,
+			top 300ms ease,
+			transform 300ms ease,
+			width 300ms ease;
+	}
+
+	&__middle {
+		opacity: 1;
+		top: 13px;
+		transition: opacity 300ms ease;
+	}
+
+	&__bottom {
+		top: 23px;
+		transition: left 300ms ease,
+			top 300ms ease,
+			transform 300ms ease,
+			width 300ms ease;
+	}
+}
