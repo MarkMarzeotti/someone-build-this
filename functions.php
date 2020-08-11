@@ -99,7 +99,7 @@ add_action( 'after_setup_theme', 'marz_setup' );
  * Enqueue scripts and styles.
  */
 function marz_scripts() {
-	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Merriweather:400,700|Roboto:400,400i,700,700i', array(), '1' );
+	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap', array(), '1' );
 	wp_enqueue_style( 'marzeotti-base-style', get_stylesheet_directory_uri() . '/dist/css/style.css', array(), wp_get_theme()->get( 'Version' ) );
 	wp_enqueue_script( 'marzeotti-base-script', get_stylesheet_directory_uri() . '/dist/js/app.js', array( 'jquery' ), wp_get_theme()->get( 'Version' ), true );
 	wp_localize_script(
@@ -197,6 +197,24 @@ function marz_disable_font_sizes() {
 add_action( 'after_setup_theme', 'marz_disable_font_sizes' );
 
 /**
+ * Add Tailwind CSS classes to HTML tags in the content.
+ *
+ * @param string $content The post content.
+ */
+function marz_add_classes_to_content_tags( $content ) {
+	$content = preg_replace( '/<[pP][\s\S]*?>/', '<p class="my-2 text-md leading-relaxed font-normal text-gray-700">', $content );
+	$content = preg_replace( '/<[hH]1[\s\S]*?>/', '<h2 class="my-3 text-2xl leading-normal font-medium text-gray-800">', $content );
+	$content = preg_replace( '/<\/[hH]1[\s\S]*?>/', '</h2>', $content );
+	$content = preg_replace( '/<[hH]2[\s\S]*?>/', '<h2 class="my-3 text-2xl leading-normal font-medium text-gray-800">', $content );
+	$content = preg_replace( '/<[hH]3[\s\S]*?>/', '<h3 class="my-3 text-xl leading-normal font-medium text-gray-800">', $content );
+	$content = preg_replace( '/<[hH]4[\s\S]*?>/', '<h4 class="my-3 text-lg leading-normal font-medium text-gray-800">', $content );
+	$content = preg_replace( '/<[hH]5[\s\S]*?>/', '<h5 class="my-2 text-md leading-normal font-medium text-gray-800">', $content );
+	$content = preg_replace( '/<[hH]6[\s\S]*?>/', '<h6 class="my-2 text-md leading-normal font-medium text-gray-800">', $content );
+	return $content;
+}
+add_filter( 'the_content', 'marz_add_classes_to_content_tags' );
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
@@ -212,6 +230,38 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/post-types-taxonomies.php';
 
 /**
+ * A custom walker class to modify the comment list markup.
+ */
+require get_template_directory() . '/inc/url-structure.php';
+
+/**
  * A custom walker class to modify the navigation markup.
  */
 require get_template_directory() . '/inc/class-marz-walker-nav-menu.php';
+
+/**
+ * A custom walker class to modify the comment list markup.
+ */
+require get_template_directory() . '/inc/class-marz-walker-comment.php';
+
+function additional_fields () {
+	?>
+  	<label for="category" class="block text-gray-700 font-medium mb-3">Category</label>
+    <select id="category" name="category" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none">
+        <option value="idea">Idea</option>
+        <option value="branding">Branding</option>
+        <option value="design">Design</option>
+        <option value="engineering">Engineering</option>
+    </select>
+	<?php
+}
+add_action( 'comment_form_logged_in_after', 'additional_fields' );
+add_action( 'comment_form_after_fields', 'additional_fields' );
+
+function save_comment_meta_data( $comment_id ) {
+  	if ( isset( $_POST['category'] ) && ! empty( $_POST['category'] ) ) {
+	  	$category = wp_filter_nohtml_kses($_POST['category']);
+		add_comment_meta( $comment_id, 'category', $category );
+	}
+}
+add_action( 'comment_post', 'save_comment_meta_data' );

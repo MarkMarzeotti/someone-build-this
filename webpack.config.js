@@ -92,6 +92,7 @@ module.exports = {
 								ident: 'postcss',
 								sourceMap: true,
 								plugins: [
+									require('tailwindcss'),
 									require('autoprefixer')(),
 									require('cssnano')()
 								],

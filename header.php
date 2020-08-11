@@ -22,62 +22,36 @@
 <div id="page">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'marzeotti-base' ); ?></a>
 
-	<header id="masthead" class="header">
-		<div class="container">
-			<div class="header__logo">
-				<?php
-				the_custom_logo();
-				if ( is_front_page() && is_home() ) :
-					?>
-					<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-					<?php
-				else :
-					?>
-					<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php endif; ?>
+	<header id="masthead" class="container mx-auto py-6 mb-10">
+		<div class="flex items-center justify-between flex-wrap">
+			<div class="flex items-center flex-shrink-0 lg:flex-grow mr-6">
+				<a href="" class="flex items-center flex-shrink-0 text-gray-700 hover:text-teal-500 transition duration-300">
+					<svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.16 6.42a8.03 8.03 0 0 0-3.58-3.58l-1.34 2.69a5.02 5.02 0 0 1 2.23 2.23l2.69-1.34zm0 7.16l-2.69-1.34a5.02 5.02 0 0 1-2.23 2.23l1.34 2.69a8.03 8.03 0 0 0 3.58-3.58zM6.42 2.84a8.03 8.03 0 0 0-3.58 3.58l2.69 1.34a5.02 5.02 0 0 1 2.23-2.23L6.42 2.84zM2.84 13.58a8.03 8.03 0 0 0 3.58 3.58l1.34-2.69a5.02 5.02 0 0 1-2.23-2.23l-2.69 1.34zM10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+					<span class="font-medium text-2xl tracking-tight">Someone Build This</span>
+				</a>
 			</div>
-
-			<?php if ( has_nav_menu( 'primary-menu' ) || has_nav_menu( 'button-menu' ) ) : ?>
-				<nav id="site-navigation" class="header__nav nav">
-					<button id="menu-button" class="nav__button" aria-controls="primary-menu" aria-expanded="false">
-						<span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'marzeotti-base' ); ?></span>
-						<span class="hamburger">
-							<span class="hamburger__top"></span>
-							<span class="hamburger__middle"></span>
-							<span class="hamburger__bottom"></span>
-						</span>
-					</button>
-
-					<div class="nav__container">
-						<?php
-						if ( has_nav_menu( 'primary-menu' ) ) :
-							wp_nav_menu(
-								array(
-									'container'      => false,
-									'menu_id'        => 'primary-menu',
-									'menu_class'     => 'nav__level',
-									'theme_location' => 'primary-menu',
-									'walker'         => new Marz_Walker_Nav_Menu(),
-								)
-							);
-						endif;
-
-						if ( has_nav_menu( 'button-menu' ) ) :
-							wp_nav_menu(
-								array(
-									'container'      => false,
-									'menu_id'        => 'button-menu',
-									'menu_class'     => 'nav__level button-menu',
-									'theme_location' => 'button-menu',
-									'walker'         => new Marz_Walker_Nav_Menu(),
-									'depth'          => 1,
-								)
-							);
-						endif;
-						?>
-					</div>
-				</nav>
-			<?php endif; ?>
+			<div class="block lg:hidden">
+				<button class="flex items-center px-3 py-2 border rounded text-teal-500 hover:text-teal-800">
+					<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+				</button>
+			</div>
+			<nav class="w-full block flex-grow lg:flex lg:items-center justify-end lg:w-auto">
+				<!-- <div class="text-sm lg:flex-grow">
+					<a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-500 hover:text-teal-800 mr-4">
+						Docs
+					</a>
+					<a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-500 hover:text-teal-800 mr-4">
+						Examples
+					</a>
+					<a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-500 hover:text-teal-800">
+						Blog
+					</a>
+				</div> -->
+				<div>
+					<a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-teal-500 border-teal-500 hover:border-transparent hover:text-white hover:bg-teal-500 transition duration-300 mt-4 lg:mt-0">Log In</a>
+					<a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-teal-500 border-teal-500 hover:border-transparent hover:text-white hover:bg-teal-500 transition duration-300 mt-4 lg:mt-0">Sign Up</a>
+				</div>
+			</nav>
 		</div>
 	</header>
 
