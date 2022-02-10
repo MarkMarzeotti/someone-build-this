@@ -28,7 +28,7 @@
     "file-loader": "^4.3.0",
     "json-loader": "0.5.4",
     "mem": "^9.0.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.9",
     "sass-loader": "4.0.2",
